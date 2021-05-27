@@ -14,7 +14,7 @@ def start(update, _: CallbackContext):
                                                      "\n/start начинаю работу"
                                                      "\n/help рассказываю о возможностях"
                                                      "\n/picture отправляю картинку",
-        reply_markup=ForceReply(selective=False)
+        reply_markup=ForceReply(selective=True)
     )
 
 
