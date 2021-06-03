@@ -12,9 +12,9 @@ def start(update, _: CallbackContext):
     user = update.effective_user
     update.message.reply_markdown_v2(
         fr"Привет, {user.mention_markdown_v2()}\!" + "\n Я знаю следующие команды: "
-                                                     "\n/start начинаю работу"
-                                                     "\n/help рассказываю о возможностях"
-                                                     "\n/picture отправляю картинку",
+                                                     "\n/start начну работу"
+                                                     "\n/help расскажу о своих возможностях"
+                                                     "\n/picture отправлю картинку",
         reply_markup=ForceReply(selective=False)
     )
 
@@ -26,7 +26,10 @@ def command_help(update, _: CallbackContext):
         "\n/start начинаю работу"
         "\n/help рассказываю о возможностях"
         "\n/picture отправляю картинку"
-        "\nКроме того, я могу отпралять картинки по просьбе 'Отправь кота'")
+        "\n\nА ещё я умею отпралять картинки по просьбе 'Отправь кота'."
+        "\n\nКроме того, могу попытаться угадать породу кота по фотографии. "
+        " К сожалению, пока что я знаю всего 5 пород: абиссинская, "
+        "бенгальская, бирманская, бомбейская и британская короткошерстная.")
 
 
 def echo(update, _: CallbackContext):
