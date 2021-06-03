@@ -61,12 +61,13 @@ def recognize_picture(update, _: CallbackContext):
 
     image = update.message.photo[0].get_file()
     image.download('user_photo.jpg')
+    model = "model_ex-010_acc-0.836387.h5"
 
     execution_path = os.getcwd()
 
     prediction = CustomImageClassification()
     prediction.setModelTypeAsInceptionV3()
-    prediction.setModelPath(os.path.join(execution_path, "model_ex-010_acc-0.836387.h5"))
+    prediction.setModelPath(os.path.join(execution_path, model))
     prediction.setJsonPath(os.path.join(execution_path, "model_class.json"))
     prediction.loadModel(num_objects=5)
 
