@@ -1,6 +1,6 @@
 from telegram import ForceReply
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
-from imageai.Classification.Custom import CustomImageClassification
+from recognize import *
 import random
 import os
 
@@ -78,18 +78,7 @@ def recognize_picture(update, _: CallbackContext):
     update.message.reply_text("Хмм, дай-ка подумать...")
 
     image = update.message.photo[0].get_file()
-    image.download('user_photo.jpg')
-    model = "model_ex-010_acc-0.836387.h5"
-
-    execution_path = os.getcwd()
-
-    prediction = CustomImageClassification()
-    prediction.setModelTypeAsInceptionV3()
-    prediction.setModelPath(os.path.join(execution_path, model))
-    prediction.setJsonPath(os.path.join(execution_path, "model_class.json"))
-    prediction.loadModel(num_objects=5)
-
-    prediction, probabilities = prediction.classifyImage('user_photo.jpg', result_count=2)
+    prediction, probabilities = recognizing(image)
 
     result = ("Это похоже на кошку породы " + str(prediction[0])
               + ' я уверен в этом на ' + "%.0f" % probabilities[0] + '%')
